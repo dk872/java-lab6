@@ -5,8 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
-
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class TranslatorTest {
 
@@ -115,5 +117,25 @@ public class TranslatorTest {
         String phrase = "hello   world  is   great";
         String expected = "Привіт світ є чудовий";
         assertEquals(expected, translator.translatePhrase(phrase));
+    }
+
+    @Test
+    void patternShouldHandleApostrophesHyphensAndPunctuation() {
+        Pattern pattern = Pattern.compile("\\p{L}+(?:['-]\\p{L}+)*|\\p{Punct}");
+        String phrase = "It's a well-known fact, isn't it? Привіт-світ!";
+
+        Matcher matcher = pattern.matcher(phrase);
+        List<String> tokens = new ArrayList<>();
+
+        while (matcher.find()) {
+            tokens.add(matcher.group());
+        }
+
+        List<String> expected = List.of(
+                "It's", "a", "well-known", "fact", ",",
+                "isn't", "it", "?", "Привіт-світ", "!"
+        );
+
+        assertEquals(expected, tokens);
     }
 }

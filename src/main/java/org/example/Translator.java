@@ -31,24 +31,20 @@ public class Translator {
     private String translateTokens(String phrase) {
         StringBuilder translatedPhrase = new StringBuilder();
 
-        Pattern pattern = Pattern.compile("\\w+|[.,!?;:]");
+        Pattern pattern = Pattern.compile("\\p{L}+(?:['-]\\p{L}+)*|\\p{Punct}");
         Matcher matcher = pattern.matcher(phrase);
 
-        boolean firstToken = true;
         while (matcher.find()) {
             String token = matcher.group();
 
             if (isWord(token)) {
-                String translation = translateWord(token);
-                if (!firstToken) {
+                if (!translatedPhrase.isEmpty()) {
                     translatedPhrase.append(" ");
                 }
-                translatedPhrase.append(translation);
+                translatedPhrase.append(translateWord(token));
             } else {
                 translatedPhrase.append(token);
             }
-
-            firstToken = false;
         }
 
         return translatedPhrase.toString().trim();
