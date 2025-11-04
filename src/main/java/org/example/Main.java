@@ -38,13 +38,13 @@ public class Main {
     }
 
     private static void addNewWordPairs(Translator translator, Scanner scanner) {
-        System.out.println("\n2. Adding new word pairs (enter 'done' in the English field to finish):");
+        System.out.println("\n2. Adding new word pairs (enter '0' in the English field to finish):");
 
         while (true) {
-            System.out.print("Enter English word (or 'done' to continue): ");
+            System.out.print("Enter English word (or '0' to continue): ");
             String englishWord = scanner.nextLine().trim();
 
-            if (englishWord.equalsIgnoreCase("done")) {
+            if (englishWord.equalsIgnoreCase("0")) {
                 break;
             }
 
