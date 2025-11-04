@@ -51,7 +51,7 @@ public class Translator {
     }
 
     private boolean isWord(String token) {
-        return token.matches("\\w+");
+        return token.matches("\\p{L}+(?:['-]\\p{L}+)*");
     }
 
     private String translateWord(String word) {

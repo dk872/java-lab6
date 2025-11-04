@@ -31,8 +31,10 @@ public class Main {
         translator.addWordPair("great", "чудовий");
         translator.addWordPair("a", "це");
         translator.addWordPair("language", "мова");
+        translator.addWordPair("it's", "це є");
+        translator.addWordPair("mother-in-law", "теща");
 
-        System.out.println("Added 8 initial word pairs.");
+        System.out.println("Added 10 initial word pairs.");
     }
 
     private static void addNewWordPairs(Translator translator, Scanner scanner) {
