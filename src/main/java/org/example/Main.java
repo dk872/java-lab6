@@ -44,7 +44,7 @@ public class Main {
             System.out.print("Enter English word (or '0' to continue): ");
             String englishWord = scanner.nextLine().trim();
 
-            if (englishWord.equalsIgnoreCase("0")) {
+            if (englishWord.equals("0")) {
                 break;
             }
 
